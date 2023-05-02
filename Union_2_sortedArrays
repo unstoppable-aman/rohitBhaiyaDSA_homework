@@ -1,0 +1,81 @@
+Union of two arrays can be defined as the common and distinct elements in the two arrays.
+Given two sorted arrays of size n and m respectively, find their union.
+
+
+Example 1:
+
+Input: 
+n = 5, arr1[] = {1, 2, 3, 4, 5}  
+m = 3, arr2 [] = {1, 2, 3}
+Output: 1 2 3 4 5
+Explanation: Distinct elements including 
+both the arrays are: 1 2 3 4 5.
+ 
+
+Example 2:
+
+Input: 
+n = 5, arr1[] = {2, 2, 3, 4, 5}  
+m = 5, arr2[] = {1, 1, 2, 3, 4}
+Output: 1 2 3 4 5
+Explanation: Distinct elements including 
+both the arrays are: 1 2 3 4 5.
+ 
+
+Example 3:
+
+Input:
+n = 5, arr1[] = {1, 1, 1, 1, 1}
+m = 5, arr2[] = {2, 2, 2, 2, 2}
+Output: 1 2
+Explanation: Distinct elements including 
+both the arrays are: 1 2.
+
+*************************************************************************
+SOLUTION:
+
+vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        int auxArray[n+m],i=0,j=0,k=0;
+        vector<int> vec;
+        while(i<n && j<m)
+        {
+            if(arr1[i]<arr2[j]) 
+                auxArray[k++]=arr1[i++];
+            else if(arr1[i]>arr2[j])
+                auxArray[k++]=arr2[j++];
+            else
+            {
+                auxArray[k]=arr1[i];
+                i++;
+                j++;
+                k++;
+            }
+        }
+        while(i<n)
+            auxArray[k++]=arr1[i++];
+        while(j<m)
+            auxArray[k++]=arr2[j++];
+        ******************************************Note:STARTS***************************************
+        below steps are for handling these types of test cases: in which same array contains more than one same elements;
+        like 
+        Input: 
+        n = 5, arr1[] = {2, 2, 3, 4, 5}  
+        m = 5, arr2[] = {1, 1, 2, 3, 4}
+        Output: 1 2 3 4 5
+        Input:
+        n = 5, arr1[] = {1, 1, 1, 1, 1}
+        m = 5, arr2[] = {2, 2, 2, 2, 2}
+        Output: 1 2
+        ******************************************Note:ENDS*****************************************
+        vec.push_back(auxArray[0]);
+        for(int it=1;it<k;it++)
+        {
+            if(auxArray[it]^auxArray[it-1])
+            {
+                vec.push_back(auxArray[it]);
+            }
+        }
+        return vec;
+        //return vector with correct order of elements
+    }
