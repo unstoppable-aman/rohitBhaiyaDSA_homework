@@ -28,7 +28,8 @@ arr is guaranteed to be a mountain array.
 
 ************************************************************SOLUTION*******************************************************************************
 
-  int start=0,end=arr.size()-1,mid;
+  int peakIndexInMountainArray(vector<int>& arr) {
+        int start=0,end=arr.size()-1,mid;
         while(start<=end)
         {
             mid=end+(start-end)/2;
