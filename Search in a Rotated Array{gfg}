@@ -1,0 +1,55 @@
+Search in a Rotated Array
+
+Given a sorted and rotated array A of N distinct elements which is rotated at some point, and given an element key. 
+The task is to find the index of the given element key in the array A. The whole array A is given as the range to search.
+
+Example 1:
+
+Input:
+N = 9
+A[] = {5, 6, 7, 8, 9, 10, 1, 2, 3}
+key = 10
+l = 0 , h = 8
+Output:
+5
+Explanation: 10 is found at index 5.
+Example 2:
+
+Input:
+N = 4
+A[] = {3, 5, 1, 2}
+key = 6
+l = 0 , h = 3
+Output:
+-1
+Explanation: There is no element that has value 6.
+
+****************************************************SOLUTION**************************************************************************
+
+  int search(int A[], int start, int end, int target){
+        int pivot=A[0],m;
+        while(start<=end)
+        {   m=end+(start-end)/2;
+            if(A[m]==target)
+                return m;
+            else if(A[m]>pivot)
+            {
+                //mid ke left side mei
+                if(target>=pivot && target<A[m])
+                    end=m-1;
+                //mid ke right side mei
+                else
+                    start=m+1;
+            }
+            else 
+            {   //mid ke right side mei
+                if(target>A[m] && target<pivot)
+                    start=m+1;
+                //mid ke left side mei
+                else 
+                    end=m-1;
+            }
+        }
+        return -1;
+       
+    }
