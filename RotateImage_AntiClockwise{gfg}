@@ -1,0 +1,21 @@
+void rotateMatrix(vector<vector<int>>& arr, int n) {
+	    //1st step Transpose
+	     for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                if(i!=j)
+                {
+                    swap(arr[i][j],arr[j][i]);
+                }
+            }
+        }  
+        //2nd step flip
+    for(int i=0;i<n/2;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                swap(arr[i][j],arr[n-1-i][j]);
+            }
+        }
+	}
