@@ -1,0 +1,23 @@
+void rotate(vector<vector<int>>& arr) {
+        int n=arr[0].size();
+          //1st step flip
+	     for(int i=0;i<n/2;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                swap(arr[i][j],arr[n-1-i][j]);
+            }
+        }
+	
+        //2nd step transpose
+         for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                if(i!=j)
+                {
+                    swap(arr[i][j],arr[j][i]);
+                }
+            }
+        }  
+    } 
