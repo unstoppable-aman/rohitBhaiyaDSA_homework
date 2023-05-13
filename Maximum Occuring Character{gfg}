@@ -1,0 +1,43 @@
+Given a string str. The task is to find the maximum occurring character in the string str.
+If more than one character occurs the maximum number of time then print the lexicographically smaller character.
+
+Example 1:
+
+Input:
+str = testsample
+Output: e
+Explanation: e is the character which
+is having the highest frequency.
+Example 2:
+
+Input:
+str = output
+Output: t
+Explanation:  t and u are the characters
+with the same frequency, but t is
+lexicographically smaller.
+
+*******************************************************************SOLUTION********************************************************
+
+  //Function to find the maximum occurring character in a string.
+    char getMaxOccuringChar(string str)
+    {
+        int arr[26]={0};
+        for(int i=0;i<str.size();i++)
+        {
+            int index=str[i]-'a';
+            arr[index]++;
+        }
+        int max_ele=arr[0],max_index=0;
+        
+        for(int i=1;i<26;i++)
+        {
+            if(arr[i]>max_ele)
+            {
+                max_ele=arr[i];
+                max_index=i;
+            }
+        }
+        char result = 'a'+max_index;
+        return result;
+    }
