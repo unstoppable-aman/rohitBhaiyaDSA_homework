@@ -1,0 +1,67 @@
+Ques link: https://practice.geeksforgeeks.org/problems/print-matrix-in-diagonal-pattern/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+***********************************************************************SOLUTION************************************************************************************
+ vector<int> matrixDiagonally(vector<vector<int>>&arr)
+    {
+        vector<int> vec;
+        int row=0,col=0,flag=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(flag==0)
+            {
+                int temp=row;
+                while(row>=0 && col<=temp)
+                {   
+                    vec.push_back(arr[row][col]);
+                    row--,col++;
+                }
+                flag=1,row++;//row++ because currently row is -1.
+             
+            }
+            else
+            {
+                int temp=col;
+                while(row<=temp && col>=0)
+                {
+                    
+                    vec.push_back(arr[row][col]);
+                    row++,col--;
+                }
+                flag=0,col++;//col++ because currently row is -1.
+            }
+                
+            
+        }
+        if(flag==0)
+        {
+            row--,col++;
+        }
+        else
+        {
+            row++,col--;
+        }
+        for(int i=0;i<arr.size()-1;i++)
+        {
+            if(flag==0)
+            {
+                int row_limit=col,col_limit=row;
+                while(row>=row_limit && col<=col_limit)
+                {
+                    vec.push_back(arr[row][col]);
+                    row--,col++;
+                }
+                flag=1,row=row_limit+1,col--;
+            }
+            else
+            {
+                int row_limit=col,col_limit=row;
+                while(row<=row_limit && col>=col_limit)
+                {
+                    vec.push_back(arr[row][col]);
+                    row++,col--;
+                }
+                flag=0,row--,col=col_limit+1;
+            }
+        }
+        return vec;
+    }
